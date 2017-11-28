@@ -1,18 +1,20 @@
-#### GPS Score Functions: Continuous Treatment Domain
-## Updated: 11/14/2017
-## By: Justin Williams
-
 #' Generalized Propensity Score for Continuous Treatment Domain
 #'
+#' This function is used to fit a normal model for the conditional distribution of the treatment given covariates, and returns the resulting score function values for the observed treatment. After fitting the observed values the user can specify specific fixed treatment values to evaluate the conditional density at these points.
+#'
+#' @param tx Vector with the continuous treatment value, used for finding the initial parameter MLE's
+#' @param covs Matrix of observed covariates
+#' @param gps_val Scalar value or vector which contains the values to find the estimated generalized propensity score
+#' @param interact_vars Specifies a character subset of the variables from the matrix covs and adds in pairwise interactions between all included covariates
+#' @param polynomial_vars Specifies a character subset of variables from the matrix covs to include as polynomial terms
+#' @param polynomial_deg Scalar value that identifies to what power the polynomial variable should be raised
+#' @param variable_selection Indicator whether to perform variable selection using AIC backwards selection
+#'
+#' @return Returns a list of objects.
+#'
+#'
+#' @export
 
-# a simple function to evaluate the conditional density given a treatment value, design matrix, and coefficient estimates
-R_score <- function(tx, X, beta, sigma){
-  #tx     : is a continuous treatment vector
-  #X      : design matrix used when estimating the beta and sigma parameters
-  #beta   : fixed coefficient estimate from conditional distribution of tx given X
-  #sigma  : standard deviation estimate from conditional distribution of tx given X
-  (1/ sqrt(2 * pi * sigma^2)) * exp((-1/(2 * sigma^2)) * (tx - X %*% beta)^2)
-}
 
 # we want to write a function that will caclulate the GPS values at specific values of the treatment
 normal_gps <- function(tx, covs, gps_val = NULL, interact_vars = NULL, polynomial_vars = NULL,
@@ -28,6 +30,15 @@ normal_gps <- function(tx, covs, gps_val = NULL, interact_vars = NULL, polynomia
   ####################
   library(plyr)
   library(dplyr)
+
+  # a simple function to evaluate the conditional density given a treatment value, design matrix, and coefficient estimates
+  R_score <- function(tx, X, beta, sigma){
+    #tx     : is a continuous treatment vector
+    #X      : design matrix used when estimating the beta and sigma parameters
+    #beta   : fixed coefficient estimate from conditional distribution of tx given X
+    #sigma  : standard deviation estimate from conditional distribution of tx given X
+    (1/ sqrt(2 * pi * sigma^2)) * exp((-1/(2 * sigma^2)) * (tx - X %*% beta)^2)
+  }
 
   #standardizing the numeric values
   num_var <- sapply(covs, is.numeric)
