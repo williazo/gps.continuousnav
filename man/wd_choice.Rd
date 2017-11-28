@@ -4,10 +4,10 @@
 \alias{wd_choice}
 \title{Working Directory Function}
 \usage{
-wd_choice(comp_choice, type_save)
+wd_choice(comp_choice, type_save = NULL)
 }
 \arguments{
-\item{comp_choice}{Character value specifying which of the three computers I am using}
+\item{comp_choice}{Character value specifying which of the three computers I am using. Options are: macbook, iMac, and may_lab}
 
 \item{type_save}{Character value specifying which type of file to save, e.g. Image}
 }

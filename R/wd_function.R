@@ -1,6 +1,6 @@
 #' Working Directory Function
 #'
-#' @param comp_choice Character value specifying which of the three computers I am using
+#' @param comp_choice Character value specifying which of the three computers I am using. Options are: macbook, iMac, and may_lab
 #' @param type_save Character value specifying which type of file to save, e.g. Image
 #'
 #' @return Returns the working directory of interest
