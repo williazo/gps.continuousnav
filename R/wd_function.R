@@ -9,7 +9,7 @@
 
 
 #creating a function that will allow me to switch between computers easier
-wd_choice <- function(comp_choice, type_save){
+wd_choice <- function(comp_choice, type_save=NULL){
   macbook_wd  <- "~/Documents/UCLA/"
   iMac_wd     <- "~/Documents/Propensity_Project/"
   may_lab_wd  <- "~/PropensityScoreModeling/"
