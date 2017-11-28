@@ -32,5 +32,9 @@ wd_choice <- function(comp_choice, type_save=NULL){
     }
   } else if (type_save == "Table"){
     ### Will come back and fill this in ###
+  } else if (type_save == "Data") {
+    if (comp_choice == "macbook"){
+      paste0(macbook_wd, "ECOS Study/")
+    }
   }
 }
