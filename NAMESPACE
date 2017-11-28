@@ -2,3 +2,4 @@
 
 export(normal_gps)
 export(quant_create)
+export(wd_choice)
