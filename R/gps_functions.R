@@ -2,6 +2,8 @@
 #'
 #' This function is used to fit a normal model for the conditional distribution of the treatment given covariates, and returns the resulting score function values for the observed treatment. After fitting the observed values the user can specify specific fixed treatment values to evaluate the conditional density at these points.
 #'
+#' Currently assumes normal density for the conditional distribution.
+#'
 #' @param tx Vector with the continuous treatment value, used for finding the initial parameter MLE's
 #' @param covs Matrix of observed covariates
 #' @param gps_val Scalar value or vector which contains the values to find the estimated generalized propensity score

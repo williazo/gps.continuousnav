@@ -28,3 +28,6 @@ Returns a list of objects.
 \description{
 This function is used to fit a normal model for the conditional distribution of the treatment given covariates, and returns the resulting score function values for the observed treatment. After fitting the observed values the user can specify specific fixed treatment values to evaluate the conditional density at these points.
 }
+\details{
+Currently assumes normal density for the conditional distribution.
+}
