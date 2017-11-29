@@ -10,8 +10,8 @@
 #'
 #'@param dt Data.frame object in R. This data frame must have covariates and tx_var as variable names
 #'@param covariates
-#'@param tx
-#'@param tx_cat Character value identifying the categorical values for the treatment variables
+#'@param tx Continuous treatment variable.
+#'@param tx_cat Factor vector specifying the levels of the continuous variable being investigated.
 #'
 #'@return List of objects containing \code{mean_table}, \code{t_table}, and \code{obs}
 #'
@@ -24,12 +24,15 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
   # covariates  : chacracter value or vector which contains probable covariates to try and balance on/fit as part of GPS
   ####################
 
+  if(length(tx_cat)!=nrow(dt) | length(tx)!=nrow(dt)){
+    stop("Incorrect dimenstions. Treatment variable must be same length as data.frame.")
+  }
   #adding in this initial part so that this function can handle categorical variables as well
   if(is.null(tx)==T & is.null(tx_cat)==T){
     stop("Must specify either continuous treatment vector or categorical treatment vector")
   }
   if(is.null(tx_cat)==T & is.null(tx)== F){
-    warning("Setting the number of quantiles to three.")
+    warning("Setting the number of quantiles to three.", call. = F)
     tx_cut = quant_create(tx, n = 3)
     tx_var = tx_cut$quant
   }
@@ -43,6 +46,10 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
 
   if(sum(covariates%in%names(dt))!=length(covariates)){
     stop("Covariate names not found in data.frame")
+  }
+
+  if(sum(tx_var%in%names(dt)) == 0){
+    dt <- data.frame(dt, tx_var)
   }
   #this will be a data.frame of just the covariates variable
   cov_data = dt[, covariates]
@@ -58,7 +65,7 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
   #dt = dt[rowSums(is.na(dt[, covariates]))==0, ]
   #combining the design matrix with the original, excluding any of the duplicate variables
   dt = data.frame(dt, design_mat[, !names(design_mat)%in%names(dt)])
-  lvl = levels(dt[, tx_var])
+  lvl = levels(dt[, "tx_var"])
   #idenfitying the total number of levels for the categorical treatment variable
 
   t_tbl = matrix(ncol = length(lvl), nrow = length(names(design_mat)))
@@ -71,11 +78,11 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
   for(i in names(design_mat)){
     for(j in lvl){
       # running a t.test of each categorical value versus all other categories
-      results = t.test(dt[dt[ , tx_var] == j, i], dt[dt[ , tx_var] != j, i])
+      results = t.test(dt[dt[ , "tx_var"] == j, i], dt[dt[ , "tx_var"] != j, i])
       #saving the resulting test statistic
       t_tbl[i, j] = results$statistic
       #calculating the mean value for the ith covariate and jth categorical level
-      mean_tbl[i, j] = round(mean(dt[dt[ , tx_var] == j, i], na.rm = T), 2)
+      mean_tbl[i, j] = round(mean(dt[dt[ , "tx_var"] == j, i], na.rm = T), 2)
     }
   }
   #saving both of these tables in the tbls object
