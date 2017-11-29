@@ -13,7 +13,9 @@
 #'@param tx
 #'@param tx_cat Character value identifying the categorical values for the treatment variables
 #'
+#'@return List of objects containing \code{mean_table}, \code{t_table}, and \code{obs}
 #'
+#'@export
 
 t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
   #### Arguments #####
