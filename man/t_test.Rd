@@ -9,7 +9,11 @@ t_test(dt, covariates, tx = NULL, tx_cat = NULL)
 \arguments{
 \item{dt}{Data.frame object in R. This data frame must have covariates and tx_var as variable names}
 
-\item{tx_cat}{Character value identifying the categorical values for the treatment variables}
+\item{covariates}{Vector of character names that specifies which covariates to test for imbalance. These variables can be numeric or categorical.}
+
+\item{tx}{Continuous treatment variable.}
+
+\item{tx_cat}{Factor vector specifying the levels of the continuous variable being investigated.}
 }
 \value{
 List of objects containing \code{mean_table}, \code{t_table}, and \code{obs}
