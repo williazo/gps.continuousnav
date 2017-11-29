@@ -9,7 +9,7 @@
 #'By default the continuous variable will be
 #'
 #'@param dt Data.frame object in R. This data frame must have covariates and tx_var as variable names
-#'@param covariates
+#'@param covariates Vector of character names that specifies which covariates to test for imbalance. These variables can be numeric or categorical.
 #'@param tx Continuous treatment variable.
 #'@param tx_cat Factor vector specifying the levels of the continuous variable being investigated.
 #'
@@ -18,15 +18,11 @@
 #'@export
 
 t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
-  #### Arguments #####
-  # dt          : data.frame object in R. This data frame must have covariates and tx_var as variable names
-  # tx_var      : character value identifying the categorical values for the treatment variables
-  # covariates  : chacracter value or vector which contains probable covariates to try and balance on/fit as part of GPS
-  ####################
 
   #adding in this initial part so that this function can handle categorical variables as well
   if(is.null(tx)==T & is.null(tx_cat)==T){
-    stop("Must specify either continuous treatment vector or categorical treatment vector", call. = F)
+    stop("Must specify either continuous treatment vector or categorical treatment vector",
+         call. = F)
   }
   if(is.null(tx_cat)==T & is.null(tx)== F){
     warning("Setting the number of quantiles to three.", call. = F)
@@ -37,12 +33,13 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
     tx_var = tx_cat
   }
   if(is.null(tx_cat) == F & is.null(tx) == F){
-    warning("Continuous treatment value and categorical treatment value supplied. Using only the categorical value")
+    warning("Continuous treatment value and categorical treatment value supplied. Using only the categorical value",
+            call. = F)
     tx_var = tx_cat
   }
 
   if(sum(covariates%in%names(dt))!=length(covariates)){
-    stop("Covariate names not found in data.frame")
+    stop("Covariate names not found in data.frame", call. = F)
   }
 
   #checking to make sure our treatment groups are the same dimension as the data.frame
