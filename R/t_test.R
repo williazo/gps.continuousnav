@@ -30,7 +30,8 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
   }
   if(is.null(tx_cat)==T & is.null(tx)== F){
     warning("Setting the number of quantiles to three.")
-    tx_var = quant_create(tx, n = 3)
+    tx_cut = quant_create(tx, n = 3)
+    tx_var = tx_cut$quant
   }
   if(is.null(tx_cat) == F & is.null(tx) == T){
     tx_var = tx_cat
@@ -40,7 +41,7 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
     tx_var = tx_cat
   }
 
-  if(covariates%in% names(dt)==F){
+  if(sum(covariates%in%names(dt))!=length(covariates)){
     stop("Covariate names not found in data.frame")
   }
   #this will be a data.frame of just the covariates variable
