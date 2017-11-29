@@ -24,12 +24,9 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
   # covariates  : chacracter value or vector which contains probable covariates to try and balance on/fit as part of GPS
   ####################
 
-  if(length(tx_cat)!=nrow(dt) | length(tx)!=nrow(dt)){
-    stop("Incorrect dimenstions. Treatment variable must be same length as data.frame.")
-  }
   #adding in this initial part so that this function can handle categorical variables as well
   if(is.null(tx)==T & is.null(tx_cat)==T){
-    stop("Must specify either continuous treatment vector or categorical treatment vector")
+    stop("Must specify either continuous treatment vector or categorical treatment vector", call. = F)
   }
   if(is.null(tx_cat)==T & is.null(tx)== F){
     warning("Setting the number of quantiles to three.", call. = F)
@@ -46,6 +43,11 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
 
   if(sum(covariates%in%names(dt))!=length(covariates)){
     stop("Covariate names not found in data.frame")
+  }
+
+  #checking to make sure our treatment groups are the same dimension as the data.frame
+  if(length(tx_var)!=nrow(dt)){
+    stop("Incorrect dimenstions. Treatment variable must be same length as data.frame.", call. = F)
   }
 
   if(sum(tx_var%in%names(dt)) == 0){
