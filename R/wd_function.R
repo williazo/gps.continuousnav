@@ -46,5 +46,8 @@ wd_choice <- function(comp_choice, type_save=NULL){
     if(comp_choice == "iMac"){
       paste0(iMac_wd, "Dose_Response_Output/")
     }
+    if (comp_choice == "may_lab"){
+      paste0(may_lab_wd, "Dose_Response_Output/")
+    }
   }
 }
