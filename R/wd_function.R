@@ -47,7 +47,7 @@ wd_choice <- function(comp_choice, type_save=NULL){
       paste0(iMac_wd, "Dose_Response_Output/")
     }
     if (comp_choice == "may_lab"){
-      paste0(may_lab_wd, "Dose_Response_Output/")
+      paste0(may_lab_wd, "DataFiles/Dose_Response_Output/")
     }
   }
 }
