@@ -36,6 +36,9 @@ wd_choice <- function(comp_choice, type_save=NULL){
     if (comp_choice == "macbook"){
       paste0(macbook_wd, "ECOS Study/")
     }
+    if (comp_choice == "may_lab"){
+      paste0(may_lab_wd,"DataFiles/")
+    }
   } else if (type_save == "Dose-Response"){
     if(comp_choice == "macbook"){
       paste0(macbook_wd, "GSRM/Dose_Response_Output/")
