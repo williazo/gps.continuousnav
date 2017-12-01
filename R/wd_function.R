@@ -22,7 +22,9 @@ wd_choice <- function(comp_choice, type_save=NULL){
     } else if (comp_choice=="may_lab"){
       paste0(may_lab_wd,"DataFiles/")
     }
-  } else if (type_save == "Image"){
+  }
+  #Image Save#
+  else if (type_save == "Image"){
     if (comp_choice=="macbook"){
       paste0(macbook_wd, "GSRM/Images/")
     } else if (comp_choice=="iMac"){
@@ -30,24 +32,26 @@ wd_choice <- function(comp_choice, type_save=NULL){
     } else if (comp_choice=="may_lab"){
       paste0(may_lab_wd,"Images/")
     }
-  } else if (type_save == "Table"){
-    ### Will come back and fill this in ###
-  } else if (type_save == "Data") {
+  }
+
+  #Data Save#
+  else if (type_save == "Data") {
     if (comp_choice == "macbook"){
       paste0(macbook_wd, "ECOS Study/")
-    }
-    if (comp_choice == "may_lab"){
+    }else if (comp_choice == "may_lab"){
       paste0(may_lab_wd,"DataFiles/")
     }
-  } else if (type_save == "Dose-Response"){
-    if(comp_choice == "macbook"){
+  }
+
+  #Dose-Response Save#
+  else if (type_save == "Dose-Response"){
+    if (comp_choice == "macbook"){
       paste0(macbook_wd, "GSRM/Dose_Response_Output/")
-    }
-    if(comp_choice == "iMac"){
+    }else if (comp_choice == "iMac"){
       paste0(iMac_wd, "Dose_Response_Output/")
-    }
-    if (comp_choice == "may_lab"){
+    }else if (comp_choice == "may_lab"){
       paste0(may_lab_wd, "DataFiles/Dose_Response_Output/")
     }
   }
+
 }
