@@ -13,6 +13,9 @@ continuous_nav(formula, data, intervals = 50)
 
 \item{intervals}{Specify the number of intervals to include.}
 }
+\value{
+Returns a lme4 object
+}
 \description{
 This function estimates the fitted value from a linear hierarchical mixed effects model, with the
 generalized propensiy score and treatment occuring at the highest level

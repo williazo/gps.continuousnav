@@ -9,6 +9,8 @@
 #'
 #'@import lme4
 #'
+#'@return Returns a lme4 object
+#'
 #'@export
 
 continuous_nav <- function(formula, data, intervals = 50){
