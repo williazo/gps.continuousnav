@@ -8,6 +8,7 @@
 #'@param intervals Specify the number of intervals to include.
 #'
 #'@import lme4
+#'
 #'@export
 
 continuous_nav <- function(formula, data, intervals = 50){
