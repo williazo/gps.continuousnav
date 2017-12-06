@@ -22,19 +22,36 @@ wd_choice <- function(comp_choice, type_save=NULL){
     } else if (comp_choice=="may_lab"){
       paste0(may_lab_wd,"DataFiles/")
     }
-  } else if (type_save == "Image"){
+  }
+  #Image Save#
+  else if (type_save == "Image"){
     if (comp_choice=="macbook"){
       paste0(macbook_wd, "GSRM/Images/")
     } else if (comp_choice=="iMac"){
       paste0(iMac_wd, "Images/")
     } else if (comp_choice=="may_lab"){
-      paste0(may_lab_wd,"DataFiles/")
-    }
-  } else if (type_save == "Table"){
-    ### Will come back and fill this in ###
-  } else if (type_save == "Data") {
-    if (comp_choice == "macbook"){
-      paste0(macbook_wd, "ECOS Study/")
+      paste0(may_lab_wd,"Images/")
     }
   }
+
+  #Data Save#
+  else if (type_save == "Data") {
+    if (comp_choice == "macbook"){
+      paste0(macbook_wd, "ECOS Study/")
+    }else if (comp_choice == "may_lab"){
+      paste0(may_lab_wd,"DataFiles/")
+    }
+  }
+
+  #Dose-Response Save#
+  else if (type_save == "Dose-Response"){
+    if (comp_choice == "macbook"){
+      paste0(macbook_wd, "GSRM/Dose_Response_Output/")
+    }else if (comp_choice == "iMac"){
+      paste0(iMac_wd, "Dose_Response_Output/")
+    }else if (comp_choice == "may_lab"){
+      paste0(may_lab_wd, "DataFiles/Dose_Response_Output/")
+    }
+  }
+
 }
