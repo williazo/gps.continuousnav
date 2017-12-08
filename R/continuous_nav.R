@@ -37,10 +37,16 @@ continuous_nav <- function(formula, data, tx, intervals = 50, covs,
 
   design_mat <- model.matrix(fixed_RHS, data)
 
+  #now we want to generate the corresponding treatment and GPS values that are fixed along the observed range
   tx_values <- seq(min(tx), max(tx), length.out = intervals)
-
+  #specifying intervals on the range of observed treatment
   r_values <- normal_gps(tx, covs, gps_val = tx_values,
                          interact_vars, polynomial_vars, polynomial_deg)
+  #calculating the corresponding normal density
+  r_values <- as.data.frame(r_values$gps_fit)
+  #returning just the matrix of density values
 
-  result = list(mixed_model = mm_out, coef_est = omega_hat, tx_values, r_values)
+  names(r_values) <- paste0("r", 1:tx_intervals) #naming each of the score function estimates based on the treatment used
+
+  result = list(mixed_model = mm_out, coef_est = omega_hat, fitted_gps = r_values)
 }
