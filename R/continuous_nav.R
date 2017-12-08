@@ -45,8 +45,7 @@ continuous_nav <- function(formula, data, tx, intervals = 50, covs,
   #calculating the corresponding normal density
   r_values <- as.data.frame(r_values$gps_fit)
   #returning just the matrix of density values
-
-  names(r_values) <- paste0("r", 1:tx_intervals) #naming each of the score function estimates based on the treatment used
+  names(r_values) <- paste0("r", 1:intervals) #naming each of the score function estimates based on the treatment used
 
   result = list(mixed_model = mm_out, coef_est = omega_hat, fitted_gps = r_values)
 }
