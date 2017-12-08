@@ -4,14 +4,25 @@
 \alias{continuous_nav}
 \title{Estimating the Dose Response Function given the Generalized Propensity Score}
 \usage{
-continuous_nav(formula, data, intervals = 50)
+continuous_nav(formula, data, tx, intervals = 50, covs, interact_vars,
+  polynomial_vars, polynomial_deg)
 }
 \arguments{
 \item{formula}{This is a formula object specifying the dose-response model}
 
 \item{data}{This is the data frame used to fit the model}
 
+\item{tx}{This is the continuous treatment vector}
+
 \item{intervals}{Specify the number of intervals to include.}
+
+\item{covs}{Matrix of observed covariates}
+
+\item{interact_vars}{Specifies a character subset of the variables from the matrix covs and adds in pairwise interactions between all included covariates}
+
+\item{polynomial_vars}{Specifies a character subset of variables from the matrix covs to include as polynomial terms}
+
+\item{polynomial_deg}{Scalar value that identifies to what power the polynomial variable should be raised}
 }
 \value{
 Returns a lme4 object
