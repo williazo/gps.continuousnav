@@ -47,19 +47,20 @@ normal_gps <- function(tx, covs, gps_val = NULL, interact_vars = NULL, polynomia
   covs[ , num_var] <- lapply(covs[ , num_var], scale)
 
   #I want to include an option where you can specify interactions between the listed covariates as well as higher order polynomials
-  if(is.null(polynomial_deg) == F & is.numeric(polynomial_deg)==F){
-    stop("Degree of polynomial must be numeric")
-  }
-  #here I am buliding a stop point if the polynomial degrees is specified but polynomial variables are not
-  if(is.null(polynomial_vars) == T & is.null(polynomial_deg) == F){
-    stop("Must specify polynomial_vars with polynomial_deg")
-  }
-  #if polynomial variables are specified then
-  if(is.null(polynomial_vars) == F & is.null(polynomial_deg) == F & polynomial_deg > 1 ){
-    power_covs <- covs[ ,polynomial_vars] ^ polynomial_deg
-    colnames(power_covs) <- paste0(polynomial_vars,"_",polynomial_deg)
-    covs <- data.frame(covs, power_covs)
-  }
+    if(is.null(polynomial_vars) == T & is.null(polynomial_deg) == F){
+      stop("Must specify polynomial_vars with polynomial_deg")
+      #here I am buliding a stop point if the polynomial degrees is specified but polynomial variables are not
+    }else if(is.null(polynomial_vars) == F & is.null(polynomial_deg) == F){
+      if(is.numeric(polynomial_deg)==F){
+        stop("Degree of polynomial must be numeric")
+      }
+      else if(polynomial_deg > 1){
+        power_covs <- covs[ ,polynomial_vars] ^ polynomial_deg
+        colnames(power_covs) <- paste0(polynomial_vars,"_",polynomial_deg)
+        covs <- data.frame(covs, power_covs)
+      }
+    #if polynomial variables are specified then
+    }
 
 
   if(is.null(interact_vars) == F){
