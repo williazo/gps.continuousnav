@@ -5,7 +5,7 @@
 #'
 #' @param dt Data.fame object in R, does not need to be specified if supplying a continuous vector
 #' @param continuous_var If dt is specified, then this should be a character variable specifying which variable to split on. If dt is null then this should be a continuous numeric vector.
-#' @param n The number of evenly spaced quantiles to create
+#' @param n The number of evenly spaced quantiles to create. Default value is tertile.
 #'
 #' @return List containing the vector of quantile values and the continuous cutpoints used.
 #'
@@ -18,7 +18,7 @@
 #'
 #building tertiles for the log density outcome measure
 #quantile creation function, n specifies the number of quantiles for the outcome variable
-quant_create <- function(continuous_var, n, dt=NULL){
+quant_create <- function(continuous_var, n = 3, dt = NULL){
   #### Arguments #####
   # n               : the number of quantiles
   # dt              : data.frame object in R, may not need to be specified

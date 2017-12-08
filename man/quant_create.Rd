@@ -4,12 +4,12 @@
 \alias{quant_create}
 \title{Quantile Creation Function}
 \usage{
-quant_create(continuous_var, n, dt = NULL)
+quant_create(continuous_var, n = 3, dt = NULL)
 }
 \arguments{
 \item{continuous_var}{If dt is specified, then this should be a character variable specifying which variable to split on. If dt is null then this should be a continuous numeric vector.}
 
-\item{n}{The number of evenly spaced quantiles to create}
+\item{n}{The number of evenly spaced quantiles to create. Default value is tertile.}
 
 \item{dt}{Data.fame object in R, does not need to be specified if supplying a continuous vector}
 }
