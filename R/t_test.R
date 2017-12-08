@@ -23,16 +23,13 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
   if(is.null(tx)==T & is.null(tx_cat)==T){
     stop("Must specify either continuous treatment vector or categorical treatment vector",
          call. = F)
-  }
-  if(is.null(tx_cat)==T & is.null(tx)== F){
+  }else if(is.null(tx_cat)==T & is.null(tx)== F){
     warning("Setting the number of quantiles to three.", call. = F)
     tx_cut = quant_create(tx, n = 3)
     tx_var = tx_cut$quant
-  }
-  if(is.null(tx_cat) == F & is.null(tx) == T){
+  }else if(is.null(tx_cat) == F & is.null(tx) == T){
     tx_var = tx_cat
-  }
-  if(is.null(tx_cat) == F & is.null(tx) == F){
+  }else if(is.null(tx_cat) == F & is.null(tx) == F){
     warning("Continuous treatment value and categorical treatment value supplied. Using only the categorical value",
             call. = F)
     tx_var = tx_cat
