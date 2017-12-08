@@ -47,12 +47,10 @@ quant_create <- function(continuous_var, n = 3, dt = NULL){
       stop("Variable specified is not in the data.frame")
     }
 
-  }
-  #if not specified then run this command
-  else{
-    quant = cut(continuous_var, breaks = c(min(dt[, continuous_var]), quantile(continuous_var, probs = probs), max(continuous_var)),
+  } else { #if not specified then run this command
+    quant = cut(continuous_var, breaks = c(min(continuous_var), quantile(continuous_var, probs = probs), max(continuous_var)),
                 include.lowest = T)
-    cut_points = c(min(dt[, continuous_var]), quantile(continuous_var, probs = probs), max(continuous_var))
+    cut_points = c(min(continuous_var), quantile(continuous_var, probs = probs), max(continuous_var))
     quant = list(quant = quant, cut = cut_points)
     return(quant)
   }
