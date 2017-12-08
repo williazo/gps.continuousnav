@@ -36,10 +36,10 @@ quant_create <- function(continuous_var, n, dt=NULL){
   if(is.null(dt)==F){
     if(continuous_var%in%names(dt)==T){
       #not that we include the lowest enpoint here, and that the breaks are specified starting at zero and run up to the maximum observed value
-      quant = cut(dt[, continuous_var], breaks = c(0, quantile(dt[ , continuous_var], probs = probs), max(dt[, continuous_var])),
+      quant = cut(dt[, continuous_var], breaks = c(min(dt[, continuous_var]), quantile(dt[ , continuous_var], probs = probs), max(dt[, continuous_var])),
                   include.lowest = T)
       #also want to save the cut point values so that these can be used as headings later
-      cut_points = c(0, quantile(dt[ , continuous_var], probs = probs), max(dt[, continuous_var]))
+      cut_points = c(min(dt[, continuous_var]), quantile(dt[ , continuous_var], probs = probs), max(dt[, continuous_var]))
       #saving both of these objects in the quant object
       quant = list(quant = quant, cut = cut_points)
       return(quant)
@@ -50,9 +50,9 @@ quant_create <- function(continuous_var, n, dt=NULL){
   }
   #if not specified then run this command
   else{
-    quant = cut(continuous_var, breaks = c(0, quantile(continuous_var, probs = probs), max(continuous_var)),
+    quant = cut(continuous_var, breaks = c(min(dt[, continuous_var]), quantile(continuous_var, probs = probs), max(continuous_var)),
                 include.lowest = T)
-    cut_points = c(0, quantile(continuous_var, probs = probs), max(continuous_var))
+    cut_points = c(min(dt[, continuous_var]), quantile(continuous_var, probs = probs), max(continuous_var))
     quant = list(quant = quant, cut = cut_points)
     return(quant)
   }
