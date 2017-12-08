@@ -40,6 +40,8 @@ wd_choice <- function(comp_choice, type_save=NULL){
       paste0(macbook_wd, "ECOS Study/")
     }else if (comp_choice == "may_lab"){
       paste0(may_lab_wd,"DataFiles/")
+    } else if (comp_choice=="iMac"){
+      paste0(iMac_wd, "GPS_DataFiles/")
     }
   }
 
