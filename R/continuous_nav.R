@@ -47,5 +47,6 @@ continuous_nav <- function(formula, data, tx, intervals = 50, covs,
   #returning just the matrix of density values
   names(r_values) <- paste0("r", 1:intervals) #naming each of the score function estimates based on the treatment used
 
-  result = list(mixed_model = mm_out, coef_est = omega_hat, fitted_gps = r_values)
+  result = list(mixed_model = mm_out, coef_est = omega_hat, fixed_tx = tx_values,
+                fitted_gps = r_values)
 }
