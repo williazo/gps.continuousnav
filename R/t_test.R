@@ -78,7 +78,7 @@ t_test <- function(dt, covariates, tx = NULL, tx_cat = NULL){
       #saving the resulting test statistic
       t_tbl[i, j] = results$statistic
       #calculating the mean value for the ith covariate and jth categorical level
-      mean_tbl[i, j] = round(mean(dt[dt[ , "tx_var"] == j, i], na.rm = T), 2)
+      mean_tbl[i, j] = mean(dt[dt[ , "tx_var"] == j, i], na.rm = T)
     }
   }
   #saving both of these tables in the tbls object
