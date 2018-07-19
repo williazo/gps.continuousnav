@@ -19,8 +19,7 @@
 #'
 #'@export
 
-continuous_nav <- function(formula, data, tx, intervals = 50, covs,
-                           interact_vars, polynomial_vars, polynomial_deg){
+continuous_nav <- function(formula, data, tx, intervals = 50, covs, ...){
 
   mm_out <- lme4::lmer(formula, data) #running the mixed effects model using lme4
   omega_hat <- summary(mm_out)$coefficients
