@@ -39,8 +39,7 @@ continuous_nav <- function(formula, data, tx, intervals = 50, covs, ...){
   #now we want to generate the corresponding treatment and GPS values that are fixed along the observed range
   tx_values <- seq(min(tx), max(tx), length.out = intervals)
   #specifying intervals on the range of observed treatment
-  r_values <- normal_gps(tx, covs, gps_val = tx_values,
-                         interact_vars, polynomial_vars, polynomial_deg)
+  r_values <- normal_gps(tx, covs, gps_val = tx_values, ...)
   #calculating the corresponding normal density
   r_values <- as.data.frame(r_values$gps_fit)
   #returning just the matrix of density values

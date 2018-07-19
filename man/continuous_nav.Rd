@@ -4,8 +4,7 @@
 \alias{continuous_nav}
 \title{Estimating the Dose Response Function given the Generalized Propensity Score}
 \usage{
-continuous_nav(formula, data, tx, intervals = 50, covs, interact_vars,
-  polynomial_vars, polynomial_deg)
+continuous_nav(formula, data, tx, intervals = 50, covs, ...)
 }
 \arguments{
 \item{formula}{This is a formula object specifying the dose-response model}
